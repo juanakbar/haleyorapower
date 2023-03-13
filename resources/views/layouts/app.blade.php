@@ -1,54 +1,50 @@
 <!DOCTYPE html>
-    <html
-        lang="en"
-        class="light-style layout-menu-fixed"
-        dir="ltr"
-        data-theme="theme-default"
-        data-assets-path="{{ asset('sneat') }}/assets/"
-        data-template="vertical-menu-template-free"
-    >
-    <head>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-        />
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-assets-path="{{ asset('sneat') }}/assets/" data-template="vertical-menu-template-free">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-        <meta name="description" content="" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ asset('sneat') }}/assets/img/favicon/favicon.ico" />
+    <meta name="description" content="" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('sneat') }}/assets/img/favicon/favicon.ico" />
 
-        <!-- Icons. Uncomment required icon fonts -->
-        <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/fonts/boxicons.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-        <!-- Core CSS -->
-        <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/css/core.css" class="template-customizer-core-css" />
-        <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-        <link rel="stylesheet" href="{{ asset('sneat') }}/assets/css/demo.css" />
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/fonts/boxicons.css" />
 
-        <!-- Vendors CSS -->
-        <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/css/core.css"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/css/theme-default.css"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/css/demo.css" />
 
-        <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-        <!-- Page CSS -->
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
 
-        <!-- Helpers -->
-        <script src="{{ asset('sneat') }}/assets/vendor/js/helpers.js"></script>
+    <!-- Page CSS -->
 
-        <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-        <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-        <script src="{{ asset('sneat') }}/assets/js/config.js"></script>
-       {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    </head>
+    <!-- Helpers -->
+    <script src="{{ asset('sneat') }}/assets/vendor/js/helpers.js"></script>
 
-    <body>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset('sneat') }}/assets/js/config.js"></script>
+    @yield('script')
+    @vite(['resources/js/app.js'])
+</head>
+
+<body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -74,32 +70,28 @@
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                        <div
+                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
                             <div class="mb-2 mb-md-0">
                                 ©
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                                <a href="https://themeselection.com" target="_blank"
+                                    class="footer-link fw-bolder">ThemeSelection</a>
                             </div>
                             <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+                                <a href="https://themeselection.com/license/" class="footer-link me-4"
+                                    target="_blank">License</a>
+                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
+                                    Themes</a>
 
-                                <a
-                                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank"
-                                    class="footer-link me-4"
-                                >Documentation</a
-                                >
+                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                                    target="_blank" class="footer-link me-4">Documentation</a>
 
-                                <a
-                                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank"
-                                    class="footer-link me-4"
-                                >Support</a
-                                >
+                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                    target="_blank" class="footer-link me-4">Support</a>
                             </div>
                         </div>
                     </footer>
@@ -138,5 +130,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    </body>
-    </html>
+
+</body>
+
+</html>

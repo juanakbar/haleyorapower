@@ -1,19 +1,26 @@
 @extends('layouts.app')
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            {{ session()->get('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if (session()->has('danger'))
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            {{ session()->get('danger') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Data Area</h5>
-            <a type="button" class="btn btn-primary" href="#">
+            <a type="button" class="btn btn-primary" href="{{ route('area.create') }}">
                 Tambah Area
             </a>
         </div>
-        <div class="mb-3 mx-3 d-flex justify-content-center align-items-center">
-            <div class="col-md-7">
-                <div class="mt-3">
-                    <button type="button" class="btn btn-outline-primary">Upload Dari Excel</button>
-                </div>
-            </div>
-            <div class="col-md-5">
+        <div class="mb-3 mx-3 d-flex justify-content-end align-items-center">
+            <div class="col-lg-7 col-md-12">
                 <div class="mt-3">
                     <form action="#" method="GET">
                         <div class="input-group input-group-merge">
@@ -27,72 +34,78 @@
                 </div>
             </div>
         </div>
-        <div class="mb-3 mx-3 d-flex justify-content-end align-items-center">
-            <div class="col-md-7">
+        <div class="mb-3 mx-3 d-flex justify-content-end">
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading text-primary">Perhatian!</h4>
+                <p class="text-dark">Silahkan download dulu Template excel untuk menggunakan fitur upload excel.</p>
+                <hr>
+                <p class="mb-0 text-dark">Diharap untuk tidak mengubah Template.</p>
+            </div>
+        </div>
+
+        <div class="mb-3 mx-3 d-flex justify-content-end align-items-center" id="upload-import">
+            <div class="col-lg-7 col-md-12">
                 <form action="{{ route('area.import') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group">
                         <input type="file" class="form-control" id="inputGroupFile04"
                             aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="template" enctype>
                         <button class="btn btn-outline-primary" type="submit" id="inputGroupFileAddon04">Upload</button>
-                        <a href="{{ asset('template-data/Area-Template.xlsx') }}" class="btn btn-outline-secondary"
-                            type="submit" id="inputGroupFileAddon04">Download Template</a>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="table-responsive text-nowrap">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nama Area</th>
-                        <th>Client</th>
-                        <th>Users</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @forelse ($areas as $area)
-                        <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                <strong class="text-capitalize">{{ $area->nama_area }}</strong>
-                            </td>
-                            <td>Albert Cook</td>
-                            <td>
-                                <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        class="avatar avatar-xs pull-up" title=""
-                                        data-bs-original-title="Lilian Fuller">
-                                        <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        class="avatar avatar-xs pull-up" title=""
-                                        data-bs-original-title="Sophia Wilkerson">
-                                        <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        class="avatar avatar-xs pull-up" title=""
-                                        data-bs-original-title="Christina Parker">
-                                        <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle">
-                                    </li>
-                                </ul>
-                            </td>
-                            <td><span class="badge bg-label-primary me-1">Active</span></td>
-                            <td>
-                                <button type="button" class="btn rounded-pill btn-icon btn-outline-warning">
-                                    <span class="tf-icons bx bx-edit-alt"></span>
-                                </button>
-                                <button type="button" class="btn rounded-pill btn-icon btn-outline-danger">
-                                    <span class="tf-icons bx bx-trash"></span>
-                                </button>
-                            </td>
+        <div class="mb-3 mx-3 d-flex justify-content-end align-items-center" id="upload-import">
+            <div class="col-lg-7 col-md-12">
+                <a href="{{ asset('template-data/Area-Template.xlsx') }}" class="btn btn-outline-secondary" type="submit"
+                    id="inputGroupFileAddon04">Download Template</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr class="text-nowrap">
+                            <th>ID</th>
+                            <th>Nama Area</th>
+                            <th>Action</th>
                         </tr>
+                    </thead>
+                    @forelse ($areas as $item)
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{ $item->id }}</th>
+                                <td>{{ $item->nama_area }}</td>
+                                <td>
+                                    <a href="{{ route('area.edit', $item->id) }}" class="btn btn-outline-warning">
+                                        <i class='bx bxs-edit'></i>
+                                    </a>
+                                    <form action="{{ route('area.destroy', $item->id) }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            <i class='bx bx-trash'></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
                     @empty
-                        No Data
+                        <x-EmptyState />
                     @endforelse
-                </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#upload-import').hide();
+            $('#btn-import').click(function() {
+                console.log('test');
+                $('#upload-import').toggle();
+            });
+        });
+    </script>
 @endsection

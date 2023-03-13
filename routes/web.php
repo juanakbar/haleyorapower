@@ -30,5 +30,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     // For Area
     Route::get('/area', [AreaController::class, 'index'])->name('area.index');
+    Route::get('/area/create', [AreaController::class, 'create'])->name('area.create');
+    Route::post('/area', [AreaController::class, 'store'])->name('area.store');
     Route::post('area-import', ImportExcelController::class)->name('area.import');
+    Route::get('/area/{area}/edit', [AreaController::class, 'edit'])->name('area.edit');
+    Route::put('/area/{area}', [AreaController::class, 'update'])->name('area.update');
+    Route::delete('/area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 });
